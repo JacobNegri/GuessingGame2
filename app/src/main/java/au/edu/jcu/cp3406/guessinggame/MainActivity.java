@@ -13,10 +13,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void checkGuess(View view) {
-        val text = "Hello toast!"
-        val duration = Toast.LENGTH_SHORT
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast,
+                (ViewGroup) findViewById(R.id.custom_toast_container));
 
-        val toast = Toast.makeText(applicationContext, text, duration)
-        toast.show()
+        TextView text = (TextView) layout.findViewById(R.id.text);
+        text.setText("This is a custom toast");
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 }
